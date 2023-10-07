@@ -1,15 +1,10 @@
-import styles from "./Header.CartButton";
+import styles from "./HeaderCartButton.module.scss";
 import CartIcon from "../../../../mealsproject-all-before-redux/src/components/Cart/CartIcon";
 const HeaderCartButton = props => {
-	const btnClasses = `${classes.button} ${
-		btnIsHighlighted ? classes.bump : ""
-	}`;
 	return (
-		<button className={btnClasses}>
-			<span>
-				<i className={styles.icon}>
-					<CartIcon />
-				</i>
+		<button className={styles.button}>
+			<span className={styles.icon}>
+				<CartIcon />
 			</span>
 			<span>Your Cart</span>
 			<span className={styles.badge}>3</span>
