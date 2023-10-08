@@ -6,8 +6,8 @@ function App() {
 	return (
 		<>
 			
-			<Header />
 			<Cart/>
+			<Header />
 			<main>
 				<Meals />
 			</main>
