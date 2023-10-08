@@ -1,9 +1,12 @@
 import styles from "./MealItemForm.module.scss";
 import Input from "../../UI/Input";
 
+const submitHandler = (e) => {
+    e.preventDefault();
+}
 const MealItemForm = props => {
 	return (
-		<form className={styles.form}>
+		<form className={styles.form} onSubmit={submitHandler}>
 			<Input
 				label='Amount'
 				input={{
