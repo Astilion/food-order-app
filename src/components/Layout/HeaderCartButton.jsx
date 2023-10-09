@@ -1,8 +1,15 @@
+import { uiActions } from "../../store/ui-slice";
+import { useDispatch } from "react-redux";
 import styles from "./HeaderCartButton.module.scss";
 import CartIcon from "../../../../mealsproject-all-before-redux/src/components/Cart/CartIcon";
 const HeaderCartButton = props => {
+	const dispatch = useDispatch()
+	const cartButtonHandler = () =>{
+		dispatch(uiActions.toggleCart())
+	}
+
 	return (
-		<button className={styles.button}>
+		<button onClick={cartButtonHandler} className={styles.button}>
 			<span className={styles.icon}>
 				<CartIcon />
 			</span>
