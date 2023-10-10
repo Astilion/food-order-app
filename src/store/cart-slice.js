@@ -26,6 +26,18 @@ const cartSlice = createSlice({
 				existingMeal.totalPrice = existingMeal.totalPrice + newMeal.price;
 			}
 		},
+		removeMealsFromCart(state, action) {
+			const id = action.payload;
+			const existingMeal = state.meals.find(meal => meal.id === id);
+			state.totalQuantity--;
+
+			if (existingMeal.quantity === 1) {
+				state.meals = state.meals.filter(meal => meal.id !== id);
+			} else {
+				existingMeal.quantity--;
+				existingMeal.totalPrice = existingMeal.totalPrice - existingMeal.price;
+			}
+		},
 	},
 });
 
