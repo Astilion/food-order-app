@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 const MealItem = props => {
 	const dispatch = useDispatch();
-
+    const price = `$${props.price.toFixed(2)}`;
 	const addToCartHandler = amount => {
 		dispatch(
 			cartActions.addMealsToCart({
@@ -20,7 +20,7 @@ const MealItem = props => {
 			<div>
 				<h3>{props.title}</h3>
 				<p className={styles.description}>{props.description}</p>
-				<p className={styles.price}>{props.price}</p>
+				<p className={styles.price}>{price}</p>
 			</div>
 			<div>
 				<MealItemForm onAddToCart={addToCartHandler} />
