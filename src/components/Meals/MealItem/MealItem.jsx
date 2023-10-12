@@ -4,23 +4,24 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 const MealItem = props => {
 	const dispatch = useDispatch();
-    const price = `$${props.price.toFixed(2)}`;
+	const { name , price, description , id} = props
+
 	const addToCartHandler = amount => {
 		dispatch(
 			cartActions.addMealsToCart({
-				id: props.id,
-				amount: amount,
-				name: props.name,
-				price: props.price,
+				id: id,
+				quantity: amount,
+				name: name,
+				price: price,
 			})
 		);
 	};
 	return (
 		<li className={styles.meal}>
 			<div>
-				<h3>{props.title}</h3>
-				<p className={styles.description}>{props.description}</p>
-				<p className={styles.price}>{price}</p>
+				<h3>{name}</h3>
+				<p className={styles.description}>{description}</p>
+				<p className={styles.price}>${price.toFixed(2)}</p>
 			</div>
 			<div>
 				<MealItemForm onAddToCart={addToCartHandler} />

@@ -1,17 +1,30 @@
 import styles from "./CartItem.module.scss";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart-slice";
 
 const CartItem = props => {
+	const dispatch = useDispatch()
+	const {title, quantity, totalPrice, price, id} = props.meal
+	const removeMealHandler = () => {
+		dispatch(cartActions.removeMealsFromCart(id))
+	}
+
+	const addMealHandler = () => {
+		dispatch(cartActions.addMealsToCart({
+			id, title, price
+		}))
+	}
 	return (
 		<li className={styles["cart-item"]}>
-			<h2>dummy heading</h2>
+			<h2>{title}</h2>
 			<div className={styles.summary}>
-				<span className={styles.price}>999</span>
-				<span className={styles.amount}>x</span>
+				<span className={styles.price}>${totalPrice.toFixed(2)}</span>
+				<span className={styles.amount}>x {quantity}</span>
 			</div>
 
 			<div className={styles.actions}>
-				<button>-</button>
-				<button>+</button>
+				<button onClick={removeMealHandler}>-</button>
+				<button onClick={addMealHandler}>+</button>
 			</div>
 		</li>
 	);

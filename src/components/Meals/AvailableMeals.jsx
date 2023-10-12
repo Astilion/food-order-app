@@ -33,7 +33,7 @@ const AvailableMeals = (props) => {
         <Card>
             <section className={styles.meals}>
                 <ul>
-                    {DUMMY_MEALS.map(meal => <MealItem key={meal.id} id= {meal.id} title={meal.title} description={meal.description} price={meal.price}/> )}
+                    {DUMMY_MEALS.map(meal => <MealItem key={meal.id} id= {meal.id} name={meal.title} description={meal.description} price={meal.price}/> )}
 
                 </ul>
             </section>

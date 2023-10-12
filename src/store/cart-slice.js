@@ -10,6 +10,7 @@ const cartSlice = createSlice({
 	initialState: initialCartState,
 	reducers: {
 		addMealsToCart(state, action) {
+			console.log("addMealsToCart reducer: action.payload =", action.payload);
 			const newMeal = action.payload;
 			const existingMeal = state.meals.find(meal => meal.id === newMeal.id);
 			state.totalQuantity++;
@@ -17,9 +18,9 @@ const cartSlice = createSlice({
 				state.meals.push({
 					id: newMeal.id,
 					price: newMeal.price,
-					quantity: newMeal.quantity,
-					name: newMeal.title,
+					quantity: 1,
 					totalPrice: newMeal.price,
+					name: newMeal.title,
 				});
 			} else {
 				existingMeal.quantity++;
@@ -40,6 +41,7 @@ const cartSlice = createSlice({
 		},
 	},
 });
+
 
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
