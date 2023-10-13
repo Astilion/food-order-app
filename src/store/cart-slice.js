@@ -20,7 +20,7 @@ const cartSlice = createSlice({
 					price: newMeal.price,
 					quantity: 1,
 					totalPrice: newMeal.price,
-					name: newMeal.title,
+					name: newMeal.name,
 				});
 			} else {
 				existingMeal.quantity++;

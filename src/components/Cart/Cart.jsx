@@ -6,18 +6,14 @@ import CartItem from "./CartItem";
 import Modal from "../UI/Modal";
 const Cart = props => {
 	const cartMeals = useSelector(state => state.cart.meals);
-	console.log(
-		"Cart component: cartMeals =",
-		cartMeals.map(meal => meal)
-	);
+	console.log("Cart component: cartMeals =", cartMeals.map(meal => meal))
 	const dispatch = useDispatch();
 	const closeCartHandler = () => {
 		dispatch(uiActions.toggleCart());
 	};
 
 	const totalAmount = cartMeals.reduce((total, meal) => {
-		return total + meal.totalPrice;
-	}, 0);
+		return total + meal.totalPrice}, 0)
 
 	return (
 		<Modal>
