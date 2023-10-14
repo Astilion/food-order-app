@@ -13,8 +13,9 @@ const cartSlice = createSlice({
 			console.log("addMealsToCart reducer: action.payload =", action.payload);
 			const newMeal = action.payload;
 			const existingMeal = state.meals.find(meal => meal.id === newMeal.id);
-			state.totalQuantity++;
+
 			if (!existingMeal) {
+				state.totalQuantity++;
 				state.meals.push({
 					id: newMeal.id,
 					price: newMeal.price,
@@ -23,6 +24,7 @@ const cartSlice = createSlice({
 					name: newMeal.name,
 				});
 			} else {
+				state.totalQuantity++;
 				existingMeal.quantity++;
 				existingMeal.totalPrice = existingMeal.totalPrice + newMeal.price;
 			}
@@ -41,7 +43,6 @@ const cartSlice = createSlice({
 		},
 	},
 });
-
 
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
