@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialToggleState = {
+interface UiState {
+	showCart: boolean;
+}
+
+const initialToggleState: UiState = {
 	showCart: false,
 };
 
