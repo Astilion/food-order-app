@@ -1,5 +1,5 @@
 import styles from "./MealsSummary.module.scss";
-const MealsSummary = props => {
+const MealsSummary = ()=> {
 	return (
 		<section className={styles.summary}>
 			<h2>Delicious Food, Delivered To You</h2>

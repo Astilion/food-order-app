@@ -1,33 +1,32 @@
-import styles from "./Modal.module.scss";
+import React, { ReactNode } from "react";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
-
 import ReactDOM from "react-dom";
+import styles from "./Modal.module.scss";
 
-const Backdrop = props => {
+interface ModalProps {
+	children: ReactNode;
+}
+
+const Backdrop: React.FC = () => {
 	const dispatch = useDispatch();
 	const backdropHandler = () => {
 		dispatch(uiActions.toggleCart());
 	};
 	return <div className={styles.backdrop} onClick={backdropHandler}></div>;
 };
-const ModalOverlay = props => {
-	return (
-		<div className={styles.modal}>
-			<div className={styles.content}>{props.children}</div>
-		</div>
-	);
-};
 
-const portalElement = document.getElementById("overlays");
+const Modal: React.FC<ModalProps> = ({ children }) => {
+	const portalElement = document.getElementById("overlays");
 
-const Modal = props => {
 	return (
 		<>
-			{ReactDOM.createPortal(<Backdrop />, portalElement)}
+			{ReactDOM.createPortal(<Backdrop />, portalElement!)}
 			{ReactDOM.createPortal(
-				<ModalOverlay>{props.children}</ModalOverlay>,
-				portalElement
+				<div className={styles.modal}>
+					<div className={styles.content}>{children}</div>
+				</div>,
+				portalElement!
 			)}
 		</>
 	);

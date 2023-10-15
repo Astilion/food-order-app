@@ -2,7 +2,7 @@ import Card from '../UI/Card';
 import styles from './AvailableMeals.module.scss'
 import MealItem from './MealItem/MealItem';
 
-const DUMMY_MEALS = [
+const DUMMY_MEALS: MealItem[] = [
     {
         id: 'm1',
         title: 'Sushi',
@@ -28,7 +28,7 @@ const DUMMY_MEALS = [
         price: 18.99,
     }
 ]
-const AvailableMeals = (props) => {
+const AvailableMeals = () => {
     return (
         <Card>
             <section className={styles.meals}>
