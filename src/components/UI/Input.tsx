@@ -1,5 +1,4 @@
-// Input.tsx
-import React, { forwardRef, Ref } from 'react';
+import React from "react";
 import styles from './Input.module.scss';
 
 interface InputProps {
@@ -14,15 +13,13 @@ interface InputProps {
   };
 }
 
-const Input = forwardRef(
-  ({ label, input }: InputProps, ref: Ref<HTMLInputElement>) => {
-    return (
-      <div className={styles.input}>
-        <label htmlFor={input.id}>{label}</label>
-        <input ref={ref} {...input} />
-      </div>
-    );
-  }
-);
+const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  return (
+    <div className={styles.input}>
+      <label htmlFor={props.input.id}>{props.label}</label>
+      <input ref={ref} {...props.input} />
+    </div>
+  );
+});
 
 export default Input;

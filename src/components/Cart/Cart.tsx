@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
+import { RootState } from "../../store/index";
 
 import styles from "./Cart.module.scss";
 import CartItem from "./CartItem";
 import Modal from "../UI/Modal";
-const Cart = props => {
-	const cartMeals = useSelector(state => state.cart.meals);
+const Cart = () => {
+	const cartMeals = useSelector((state: RootState) => state.cart.meals);
 	console.log("Cart component: cartMeals =", cartMeals.map(meal => meal))
 	const dispatch = useDispatch();
 	const closeCartHandler = () => {

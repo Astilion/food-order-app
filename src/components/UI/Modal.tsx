@@ -8,7 +8,7 @@ interface ModalProps {
 	children: ReactNode;
 }
 
-const Backdrop: React.FC = () => {
+const Backdrop = () => {
 	const dispatch = useDispatch();
 	const backdropHandler = () => {
 		dispatch(uiActions.toggleCart());
@@ -16,7 +16,7 @@ const Backdrop: React.FC = () => {
 	return <div className={styles.backdrop} onClick={backdropHandler}></div>;
 };
 
-const Modal: React.FC<ModalProps> = ({ children }) => {
+const Modal= (props: ModalProps) => {
 	const portalElement = document.getElementById("overlays");
 
 	return (
@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
 			{ReactDOM.createPortal(<Backdrop />, portalElement!)}
 			{ReactDOM.createPortal(
 				<div className={styles.modal}>
-					<div className={styles.content}>{children}</div>
+					<div className={styles.content}>{props.children}</div>
 				</div>,
 				portalElement!
 			)}

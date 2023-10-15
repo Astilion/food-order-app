@@ -2,7 +2,18 @@ import styles from "./CartItem.module.scss";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
-const CartItem = props => {
+interface CartItemProps {
+	meal: {
+	  id: string;
+	  title: string;
+	  quantity: number;
+	  totalPrice: number;
+	  price: number;
+	};
+  }
+
+
+const CartItem = (props: CartItemProps) => {
 	const dispatch = useDispatch()
 	const {title, quantity, totalPrice, price, id} = props.meal
 	const removeMealHandler = () => {

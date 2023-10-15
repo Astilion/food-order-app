@@ -1,21 +1,35 @@
-import styles from "./MealItem.module.scss";
-import MealItemForm from "./MealItemForm";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
-const MealItem = props => {
-	const dispatch = useDispatch();
-	const { name , price, description , id} = props
+import MealItemForm from "./MealItemForm";
+import styles from "./MealItem.module.scss";
 
-	const addToCartHandler = amount => {
+interface MealItemProps {
+	id: string;
+	name: string;
+	price: number;
+	description: string;
+}
+
+const MealItem: React.FC<MealItemProps> = ({
+	id,
+	name,
+	price,
+	description,
+}) => {
+	const dispatch = useDispatch();
+
+	const addToCartHandler = (amount: number) => {
 		dispatch(
 			cartActions.addMealsToCart({
-				id: id,
+				id,
 				quantity: amount,
-				name: name,
-				price: price,
+				name,
+				price,
 			})
 		);
 	};
+
 	return (
 		<li className={styles.meal}>
 			<div>
