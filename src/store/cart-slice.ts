@@ -1,6 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialCartState = {
+interface CartItem {
+	id: string;
+	price: number;
+	quantity: number;
+	totalPrice: number;
+	name: string;
+}
+interface CartState {
+	meals: CartItem[];
+	totalQuantity: number;
+}
+
+const initialCartState: CartState = {
 	meals: [],
 	totalQuantity: 0,
 };
@@ -9,8 +21,7 @@ const cartSlice = createSlice({
 	name: "cart",
 	initialState: initialCartState,
 	reducers: {
-		addMealsToCart(state, action) {
-			console.log("addMealsToCart reducer: action.payload =", action.payload);
+		addMealsToCart(state, action: PayloadAction<CartItem>) {
 			const newMeal = action.payload;
 			const existingMeal = state.meals.find(meal => meal.id === newMeal.id);
 
@@ -29,7 +40,7 @@ const cartSlice = createSlice({
 				existingMeal.totalPrice = existingMeal.totalPrice + newMeal.price;
 			}
 		},
-		removeMealsFromCart(state, action) {
+		removeMealsFromCart(state, action: PayloadAction<string>) {
 			const id = action.payload;
 			const existingMeal = state.meals.find(meal => meal.id === id);
 			state.totalQuantity--;
