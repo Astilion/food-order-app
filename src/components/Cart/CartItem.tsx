@@ -4,27 +4,30 @@ import { cartActions } from "../../store/cart-slice";
 
 interface CartItemProps {
 	meal: {
-	  id: string;
-	  title: string;
-	  quantity: number;
-	  totalPrice: number;
-	  price: number;
+		id: string;
+		title: string;
+		quantity: number;
+		totalPrice: number;
+		price: number;
 	};
-  }
-
+}
 
 const CartItem = (props: CartItemProps) => {
-	const dispatch = useDispatch()
-	const {title, quantity, totalPrice, price, id} = props.meal
+	const dispatch = useDispatch();
+	const { title, quantity, totalPrice, price, id } = props.meal;
 	const removeMealHandler = () => {
-		dispatch(cartActions.removeMealsFromCart(id))
-	}
+		dispatch(cartActions.removeMealsFromCart(id));
+	};
 
 	const addMealHandler = () => {
-		dispatch(cartActions.addMealsToCart({
-			id, title, price
-		}))
-	}
+		dispatch(
+			cartActions.addMealsToCart({
+				id,
+				title,
+				price,
+			})
+		);
+	};
 	return (
 		<li className={styles["cart-item"]}>
 			<h2>{title}</h2>
